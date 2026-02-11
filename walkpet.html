@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WalkPet - Cuidado, Accesorios y Paseos para tu Mascota</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Fredoka:wght@600;700&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        /* Colores basados en el logo */
+        :root {
+            --color-primary: #a8dcd1;
+            --color-secondary: #2c3e50;
+            --color-accent: #d4915e;
+            --color-green: #7fb069;
+            --color-light: #e8f5f3;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 0.3rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(168, 220, 209, 0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo {
+            width: 150px;
+            height: 150px;
+            padding: 0px;
+           
+        }
+
+        .logo-text {
+            font-family: 'Fredoka', 'Poppins', sans-serif;
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: var(--color-secondary);
+            letter-spacing: 0px;
+            text-transform: uppercase;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        nav ul li a {
+            color: var(--color-secondary);
+            text-decoration: none;
+            font-weight: 800;
+            transition: all 0.3s;
+            font-size: 1rem;
+            padding: 8px 11px;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--color-accent);
+            background: rgba(168, 220, 209, 0.1);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 70%;
+            height: 2px;
+            background: var(--color-accent);
+            transition: transform 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        /* Hero Section */
+        /* NOTA: Para agregar tu imagen de perritos de fondo, reemplaza la URL en la siguiente línea:
+           background: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.6)), 
+                       url('TU_IMAGEN_AQUI.jpg');
+           Por ejemplo: url('images/perritos-felices.jpg')
+        */
+       .hero {
+    background: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.6)),
+                url('banner.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 150px 20px;
+    text-align: left;
+    position: relative;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+}
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(168, 220, 209, 0.3) 0%, rgba(44, 62, 80, 0.8) 100%);
+            z-index: 1;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(168, 220, 209, 0.3);
+            border: 2px solid var(--color-primary);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-badge .dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #7fb069;
+            border-radius: 50%;
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 5rem;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 10px;
+            line-height: 1.1;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero h1 .highlight {
+            color: var(--color-accent);
+            display: inline;
+            font-size: 5.5rem;
+            text-shadow: 3px 3px 0px rgba(0,0,0,0.2);
+        }
+
+        .hero p {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.9rem;
+            color: white;
+            margin-bottom: 40px;
+            max-width: 700px;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--color-accent);
+            color: white;
+            padding: 18px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.3rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 6px 25px rgba(212, 145, 94, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(212, 145, 94, 0.6);
+        }
+
+        .cta-button-secondary {
+            display: inline-block;
+            background: transparent;
+            color: white;
+            padding: 18px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.3rem;
+            border: 3px solid white;
+            transition: all 0.3s;
+        }
+
+        .cta-button-secondary:hover {
+            background: white;
+            color: var(--color-secondary);
+            transform: translateY(-3px);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--color-accent);
+            display: block;
+        }
+
+        .stat-label {
+            color: white;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            color: var(--color-secondary);
+            margin-bottom: 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
+            border-radius: 10px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 60px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 25px;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 2px solid #f0f0f0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            border-color: var(--color-primary);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            font-size: 5rem;
+            margin-bottom: 25px;
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .service-card h3 {
+            color: var(--color-secondary);
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .service-card p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--color-secondary);
+            padding: 100px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: rgba(168, 220, 209, 0.1);
+            border-radius: 50%;
+        }
+
+        .about::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            background: rgba(212, 145, 94, 0.1);
+            border-radius: 50%;
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-content h2 {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 30px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+        }
+
+        .about-content p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+
+        .about-highlight {
+            background: rgba(168, 220, 209, 0.2);
+            border-left: 5px solid var(--color-accent);
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .about-highlight p {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 20px;
+            background: #f8f9fa;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 35px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-item {
+            background: white;
+            padding: 45px 35px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 2px solid transparent;
+            text-align: left;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+            border-color: var(--color-primary);
+        }
+
+        .feature-icon {
+            width: 85px;
+            height: 85px;
+            background: linear-gradient(135deg, rgba(168, 220, 209, 0.15), rgba(168, 220, 209, 0.25));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.8rem;
+            margin-bottom: 25px;
+            transition: all 0.3s;
+        }
+
+        .feature-item:hover .feature-icon {
+            transform: scale(1.1) rotate(-5deg);
+            background: linear-gradient(135deg, var(--color-primary), #8fccc0);
+        }
+
+        .feature-text h4 {
+            color: var(--color-secondary);
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .feature-text p {
+            color: #666;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, var(--color-primary) 0%, #8fccc0 100%);
+            color: var(--color-secondary);
+            padding: 100px 20px;
+            position: relative;
+        }
+
+        .contact-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-content h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+        }
+
+        .contact-content > p {
+            font-size: 1.3rem;
+            margin-bottom: 50px;
+            color: var(--color-secondary);
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .contact-item {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .contact-item span {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .contact-item strong {
+            display: block;
+            font-size: 1.3rem;
+            color: var(--color-secondary);
+            margin-bottom: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+
+        .contact-item a {
+            color: var(--color-accent);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: var(--color-secondary);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a252f;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        footer p {
+            font-size: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 100px 20px;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero h1 .highlight {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .section-subtitle {
+                font-size: 1rem;
+            }
+
+            nav ul {
+                gap: 10px;
+                margin-top: 15px;
+                justify-content: center;
+            }
+
+            nav ul li a {
+                font-size: 0.9rem;
+                padding: 6px 12px;
+            }
+
+            .services-grid, .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+
+            .logo-text {
+                font-size: 1.0rem;
+                letter-spacing: 1px;
+            }
+
+            .logo {
+                width: 100px;
+                height: 100px;
+            }
+
+            .cta-button, .cta-button-secondary {
+                font-size: 1rem;
+                padding: 15px 30px;
+            }
+        }
+     .icon-only {
+  display: flex;
+  gap: 24px;
+  margin-top: 30px;
+}
+
+.icon-btn.big {
+  width: 130px;
+  height: 70px;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.icon-btn.big img {
+  width: 42px;
+  height: 42px;
+}
+/* ==== BOTONES STORE SOLO SVG ==== */
+.store-buttons {
+  display: flex;
+  gap: 34px;
+  margin-top: 55px;
+}
+
+.store-btn {
+  width: 170px;
+  height: 90px;
+  border-radius: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Tamaño del icono */
+.store-btn img {
+  width: 135px;
+  height: 135px;
+}
+/* ANDROID VERDE */
+.store-btn.android {
+  background: #34A853;
+  box-shadow: 0 25px 45px rgb(53, 190, 89)
+}
+
+/* APPLE OSCURO */
+.store-btn.apple {
+  background: #ffffff;
+  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.977);
+}
+
+/* Hover */
+.store-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+}
+
+
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo-container">
+                    <img src="logo.png" alt="WalkPet Logo" class="logo">
+                    <div class="logo-text">WALKPET</div>
+                </div>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="container">
+            <div class="hero-badge">
+                <span class="dot"></span>
+                SOPORTE ACTIVO LAS 24 HORAS DEL DIA
+            </div>
+            <h1>
+                
+             AMOR Y CUIDADO EN   <span class="highlight"> CADA PASEO.</span>
+            </h1>
+            <p>Contamos con paseos, accesorios,snacks, comida y muchas cosas más, todo a un solo clic en nuestro aplicativo disponible para Android e iOS.</p>
+            <div class="hero-buttons store-buttons">
+  <a href="https://play.google.com/store/apps/details?id=com.walkpet.app"
+     class="store-btn android"
+     target="_blank">
+     <img src="android.svg" alt="">
+  </a>
+
+  <a href="https://apps.apple.com/app/idXXXXXXXXX"
+     class="store-btn apple"
+     target="_blank">
+     <img src="apple.svg" alt="">
+  </a>
+</div>
+
+
+
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number"></span>
+                    <span class="stat-label"></span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number"></span>
+                    <span class="stat-label"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicios" class="services">
+        <div class="container">
+            <h2 class="section-title">Nuestros Servicios</h2>
+            <p class="section-subtitle">Todo esto para consentir a tus engreidos </p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🚶‍♂️</div>
+                    <h3>Paseos</h3>
+                    <p>Paseos diarios personalizados con paseadores profesionales certificados. Rutas seguras, rastreo GPS en tiempo real y reportes fotográficos después de cada paseo.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🍖</div>
+                    <h3>Snacks</h3>
+                    <p>Variedad de snacks y premios ideales para consentir y entrenar a tu mascota, con sabores irresistibles y presentaciones prácticas para el día a día. El complemento perfecto para reforzar el buen comportamiento y hacer cada momento más especial.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎽</div>
+                    <h3>Accesorios</h3>
+                    <p>Selección premium de collares, correas, arneses, juguetes y accesorios de alta calidad. Todo lo que tu mascota necesita para estar feliz y cómoda.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="nosotros" class="about">
+        <div class="container">
+            <div class="about-content">
+                <h2>Sobre WalkPet</h2>
+                <p>En WalkPet creemos que tu perro merece lo mejor, y tú mereces total tranquilidad. Por eso combinamos la pasión por los animales con la tecnología más avanzada de rastreo GPS en tiempo real.</p>
+                <p>Cada paseador pasa por un riguroso proceso de selección que incluye verificación de antecedentes, capacitación profesional y evaluaciones continuas.</p>
+                <div class="about-highlight">
+                    <p>💙 Tu tranquilidad es nuestra prioridad. Con WalkPet, siempre sabrás dónde está tu mascota, quién la cuida y cómo se siente. Porque un perro feliz hace una familia feliz.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">¿Por qué elegirnos?</h2>
+            <p class="section-subtitle">Más que un servicio de paseos, somos tu aliado en el cuidado de tu mascota</p>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">✅</div>
+                    <div class="feature-text">
+                        <h4>Profesionales Certificados</h4>
+                        <p>Equipo capacitado y con amor por los animales</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📍</div>
+                    <div class="feature-text">
+                        <h4>GPS en Tiempo Real</h4>
+                        <p>Seguimiento del paseo de tu mascota</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📱</div>
+                    <div class="feature-text">
+                        <h4>Reportes Fotográficos</h4>
+                        <p>Fotos y actualizaciones de cada paseo</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🏆</div>
+                    <div class="feature-text">
+                        <h4>Experiencia Comprobada</h4>
+                        <p>Se verifica si el paseador tiene experiencia, la cual sale reflejada en la app.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🔒</div>
+                    <div class="feature-text">
+                        <h4>Seguro Incluido</h4>
+                        <p>Cobertura completa durante el servicio</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">⏰</div>
+                    <div class="feature-text">
+                        <h4>Horarios Flexibles</h4>
+                        <p>Adaptados a tu disponibilidad</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2>Contáctanos</h2>
+                <p>¿Listo para darle a tu mascota la mejor experiencia? Ponte en contacto con nosotros</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span>📞</span>
+                        <strong>Teléfono</strong>
+                        <a href="tel:+51951701948">951 701 948</a>
+                    </div>
+                    <div class="contact-item">
+                        <span>📧</span>
+                        <strong>Email</strong>
+                        <p>walkpetperu@gmail.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <span>📍</span>
+                        <strong>Ubicación</strong>
+                        <p style="margin: 0; color: var(--color-secondary);">Miraflores, Lima, Perú</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 WalkPet - Cuidado, Accesorios y Paseos. Todo derechos reservados
